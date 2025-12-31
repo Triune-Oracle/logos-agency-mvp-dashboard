@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "name": "logos-agency-mvp-dashboard",
+  "public": true,
+  "buildCommand": "pnpm build",
+  "devCommand": "pnpm dev",
+  "installCommand": "pnpm install",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "env": {
+    "VITE_FRONTEND_FORGE_API_URL": {
+      "description": "Supabase project URL"
+    },
+    "VITE_FRONTEND_FORGE_API_KEY": {
+      "description": "Supabase anon key"
+    },
+    "VITE_STRIPE_PUBLISHABLE_KEY": {
+      "description": "Stripe publishable key"
+    },
+    "VITE_GITHUB_CLIENT_ID": {
+      "description": "GitHub OAuth client ID"
+    },
+    "STRIPE_SECRET_KEY": {
+      "description": "Stripe secret key"
+    },
+    "STRIPE_WEBHOOK_SECRET": {
+      "description": "Stripe webhook secret"
+    }
+  },
+  "functions": {
+    "api/**/*.ts": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}
