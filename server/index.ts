@@ -10,7 +10,11 @@ async function startServer() {
   const app = express();
   const server = createServer(app);
 
-  app.use(express.json());
+  // Stripe webhook needs the raw body for signature verification
+  const webhookRouter = (await import("./routes/webhook.js")).default;
+  app.use("/api/webhooks", express.raw({ type: "application/json" }), webhookRouter);
+
+  app.use(express.json()); // For all other routes that expect JSON bodies
 
   // API Routes
   const ledgerRouter = (await import('./routes/ledger.js')).default;
