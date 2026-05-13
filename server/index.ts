@@ -10,6 +10,12 @@ async function startServer() {
   const app = express();
   const server = createServer(app);
 
+  app.use(express.json());
+
+  // API Routes
+  const ledgerRouter = (await import('./routes/ledger.js')).default;
+  app.use('/api/ledger', ledgerRouter);
+
   // Serve static files from dist/public in production
   const staticPath =
     process.env.NODE_ENV === "production"
